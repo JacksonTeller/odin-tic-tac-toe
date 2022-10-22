@@ -58,4 +58,9 @@ label[for = 'player1-name'], label[for = 'player2-name'] {
 div[class^="grid"] {
     background-color: antiquewhite;
     border: 1px solid black;
+    font-size: calc(450px /  3 - 10px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
