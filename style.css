@@ -11,6 +11,22 @@ body {
     justify-content: space-around;
 }
 
+.player1, .player2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 0 5px;
+    /* align-content: space-around; */
+}
+
+label[for = 'player1-name'], label[for = 'player2-name'] {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: aliceblue;
+}
+
 .main-container {
     width: 65%;
     background-color: beige;
