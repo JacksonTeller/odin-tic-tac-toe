@@ -8,7 +8,8 @@ body {
 
 .players {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 450px;
 }
 
 .player1, .player2 {
@@ -16,8 +17,12 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    padding: 0 5px;
+    /* padding: 0 5px; */
     /* align-content: space-around; */
+}
+
+input {
+    width: 8rem;
 }
 
 label[for = 'player1-name'], label[for = 'player2-name'] {
@@ -27,18 +32,23 @@ label[for = 'player1-name'], label[for = 'player2-name'] {
     background-color: aliceblue;
 }
 
+.start-btn {
+    margin-top: -25px;
+}
+
 .main-container {
     width: 65%;
     background-color: beige;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 1rem;
     align-items: center;
 }
 
 .gameboard {
-    width: 500px;
-    height: 500px;
+    width: 450px;
+    height: 450px;
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
