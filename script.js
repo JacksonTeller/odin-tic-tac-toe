@@ -8,7 +8,8 @@ let gridCell = document.querySelectorAll('div[class^="grid"]');
 
 function showX() {
     this.innerText = 'X';
-    updateGameboard();
+    console.log(gameboardUpdate());
+    changeTurnX();
 }
 
 // gridCell.forEach(cell => {
@@ -17,6 +18,7 @@ function showX() {
 
 function showO() {
     this.innerText = 'O';
+    console.log(gameboardUpdate());
 }
 
 // insert players' names
@@ -40,7 +42,9 @@ startBtn.addEventListener('click', () => {
     displayName2.innerText = player2Name.value;
 
     // player 1 starts a game
-    player1Play();
+    // playingGame()
+    player1Play()
+    
 })
 
 // functions for players to insert an x or o
@@ -59,12 +63,13 @@ function player2Play() {
 
 // update a gameboard
 
-function updateGameboard() {
+function gameboardUpdate() {
     let gameBoard = [];
     gridCell.forEach(cell => {
         gameBoard.push(cell.innerText);
     })
-    console.log(gameBoard)
+    // console.log(gameBoard)
+    return gameBoard;
 }
 
 // remove click event and change the turn
@@ -78,4 +83,24 @@ function changeTurnO() {
     gridCell.forEach(cell => {
         cell.removeEventListener('click', showO);
     })
+}
+
+// playing a game
+
+function playGame() {
+    // // empty gameboard 
+    // let emptyGameboard = ["","","","","","","","",""];
+    // let gameboardCheck = gameboardUpdate();
+    // let gameboardCheck = [];
+    // console.log(gameboardUpdate().toString() === emptyGameboard.toString())
+
+    // if (gameboardUpdate().toString() === emptyGameboard.toString()) {
+    //     player1Play();
+    //     gameboardCheck = gameboardUpdate();
+    // } else if (gameboardUpdate().toString() !== emptyGameboard.toString()) {
+    //     changeTurnX();
+    //     player2Play();
+    // }
+
+
 }
