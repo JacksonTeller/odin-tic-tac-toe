@@ -19,6 +19,7 @@ function showX() {
 function showO() {
     this.innerText = 'O';
     console.log(gameboardUpdate());
+    changeTurnO();
 }
 
 // insert players' names
@@ -42,9 +43,23 @@ startBtn.addEventListener('click', () => {
     displayName2.innerText = player2Name.value;
 
     // player 1 starts a game
-    // playingGame()
-    player1Play()
+
+    let count = counter();
+    console.log(count ,count === 0, count % 2)
+
+    if (count === 0) {
+        player1Play();
+    } else if (count % 2) {
+        player2Play();
+    } else {
+        player1Play();
+    }
+
     
+    // if (emptyGameboard === newState) {
+    //     player1Play();
+    //     nextState = gameboardUpdate().toString();
+    // } 
 })
 
 // functions for players to insert an x or o
@@ -53,6 +68,7 @@ function player1Play() {
     gridCell.forEach(cell => {
         cell.addEventListener('click', showX);
     });
+    // counter();
 }
 
 function player2Play() {
@@ -102,5 +118,22 @@ function playGame() {
     //     player2Play();
     // }
 
+    // let emptyGameboard = ["","","","","","","","",""];
+    // let gameboardCheck = gameboardUpdate();
+    // console.log(emptyGameboard === gameboardUpdate)
 
 }
+
+// counter
+
+const counterCreator = () => {
+    let count = 0;
+    return () => {
+      console.log(count);
+      return count++;
+    };
+  };
+  
+const counter = counterCreator();
+
+// player1plays and countX happens then a function decides whose turn is its
