@@ -42,18 +42,9 @@ startBtn.addEventListener('click', () => {
     displayName2.style.display = 'flex';
     displayName2.innerText = player2Name.value;
 
-    // player 1 starts a game
+    // playing turns
 
-    // let count = counter();
-    // console.log(count ,count === 0, count % 2)
-
-    // if (count % 2) {
-    //     player2Play();
-    // } else {
-    //     player1Play();
-    // }
-
-    playGame()
+    playGame();
 
 })
 
@@ -96,29 +87,6 @@ function changeTurnO() {
     })
 }
 
-// playing a game
-
-// function playGame() {
-    // // empty gameboard 
-    // let emptyGameboard = ["","","","","","","","",""];
-    // let gameboardCheck = gameboardUpdate();
-    // let gameboardCheck = [];
-    // console.log(gameboardUpdate().toString() === emptyGameboard.toString())
-
-    // if (gameboardUpdate().toString() === emptyGameboard.toString()) {
-    //     player1Play();
-    //     gameboardCheck = gameboardUpdate();
-    // } else if (gameboardUpdate().toString() !== emptyGameboard.toString()) {
-    //     changeTurnX();
-    //     player2Play();
-    // }
-
-    // let emptyGameboard = ["","","","","","","","",""];
-    // let gameboardCheck = gameboardUpdate();
-    // console.log(emptyGameboard === gameboardUpdate)
-
-// }
-
 // counter
 
 const counterCreator = () => {
@@ -136,10 +104,12 @@ const counter = counterCreator();
 function playGame() {
     gridCell.forEach(cell => {
         cell.addEventListener('click', () => {
-            // let count = counter();
+            let count = counter();
             // console.log(count ,count === 0, count % 2)
-
-            if (counter() % 2) {
+            if (count >= 9) {
+                cell.innerText = cell.innerText;
+                return 0;
+            } else if (count % 2) {
                 // player2Play();
                 cell.innerText = 'O';
                 console.log(gameboardUpdate())
