@@ -1,7 +1,3 @@
-// const Gameboard = (() => {
-//     let gameBoard = [];
-// })();
-
 // show x or o on click
 
 let gridCell = document.querySelectorAll('div[class^="grid"]');
@@ -31,22 +27,27 @@ let player2Name = document.querySelector('#player2-name');
 let displayName2 = document.querySelector('.display-name2');
 
 let startBtn = document.querySelector('.start-btn');
+let disabledBtn = document.querySelector('.start-disabled-btn');
 
-startBtn.addEventListener('click', () => {
-    //insert players' names
-    player1Name.style.display = 'none';
-    displayName1.style.display = 'flex';
-    displayName1.innerText = player1Name.value;
+startBtn.addEventListener('click', startGame);
 
-    player2Name.style.display = 'none';
-    displayName2.style.display = 'flex';
-    displayName2.innerText = player2Name.value;
-
-    // playing turns
-
-    playGame();
-
-})
+function startGame() {
+        //insert players' names
+        player1Name.style.display = 'none';
+        displayName1.style.display = 'flex';
+        displayName1.innerText = player1Name.value;
+    
+        player2Name.style.display = 'none';
+        displayName2.style.display = 'flex';
+        displayName2.innerText = player2Name.value;
+    
+        startBtn.style.display = 'none';
+        disabledBtn.style.display = 'flex';
+    
+    
+        // playing turns
+        playGame();
+}
 
 // functions for players to insert an x or o
 
@@ -102,24 +103,46 @@ const counter = counterCreator();
 // play on the grid
 
 function playGame() {
+    let count = 0;
     gridCell.forEach(cell => {
         cell.addEventListener('click', () => {
-            let count = counter();
+            console.log(count)
             // console.log(count ,count === 0, count % 2)
-            if (count >= 9) {
+            if (count >= 9 || disabledBtn.style.display === 'none' || isNaN(count)) {
                 cell.innerText = cell.innerText;
-                return 0;
+                count = NaN;
             } else if (count % 2) {
                 // player2Play();
                 cell.innerText = 'O';
+                count++;
                 console.log(gameboardUpdate())
             } else {
                 // player1Play();
                 cell.innerText = 'X';
+                count++;
                 console.log(gameboardUpdate())
             }
         });
     });
 }
 
-// player1plays and countX happens then a function decides whose turn is its
+// restart button
+
+let restartBtn = document.querySelector('.restart-btn');
+
+restartBtn.addEventListener('click', () => {
+    disabledBtn.style.display = 'none';
+    startBtn.style.display = 'flex';
+
+    player1Name.style.display = 'flex';
+    displayName1.style.display = 'none';
+    
+    player2Name.style.display = 'flex';
+    displayName2.style.display = 'none';
+
+    gridCell.forEach(cell => {
+        cell.innerText = '';
+    })
+}) // change restart button - needs to clean the grid and reset the counter
+
+// use count = 0 and count++ instead of counter()
