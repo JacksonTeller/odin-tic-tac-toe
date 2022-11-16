@@ -46,7 +46,9 @@ function startGame() {
     
     
         // playing turns
-        playGame();
+        // playGame();
+        console.log(game.count)
+        game.playGame();
 }
 
 // functions for players to insert an x or o
@@ -107,10 +109,10 @@ function playGame() {
     gridCell.forEach(cell => {
         cell.addEventListener('click', () => {
             console.log(count)
-            // console.log(count ,count === 0, count % 2)
+            // console.log(disabledBtn.style.display !== 'none' && isNaN(count))
             if (count >= 9 || disabledBtn.style.display === 'none' || isNaN(count)) {
-                cell.innerText = cell.innerText;
-                count = NaN;
+                // cell.innerText = cell.innerText;
+                count = NaN;                
             } else if (count % 2) {
                 // player2Play();
                 cell.innerText = 'O';
@@ -126,23 +128,60 @@ function playGame() {
     });
 }
 
+// playGame() as a module 
+
+const game = (() => {
+    let count = 0;
+    const playGame = () => {
+        gridCell.forEach(cell => {
+            cell.addEventListener('click', () => {
+                console.log(count)
+                console.log(count >= 9, disabledBtn.style.display === 'none', isNaN(count))
+                if (count >= 9 || disabledBtn.style.display === 'none') {
+                    cell.innerText = cell.innerText;
+                    // count = NaN;                
+                } else if (count % 2) {
+                    // player2Play();
+                    cell.innerText = 'O';
+                    count++;
+                    console.log(gameboardUpdate())
+                } else if (count === 0 || !(isNaN(count))) {
+                    // player1Play();
+                    cell.innerText = 'X';
+                    count++;
+                    console.log(gameboardUpdate())
+                }
+            });
+        });
+    }
+    const restartGame = () => {
+        restartBtn.addEventListener('click', () => {
+            count = 0;        
+            gridCell.forEach(cell => {
+                cell.innerText = '';
+            })
+        })
+    }
+    return {count, playGame, restartGame};
+})();
+
 // restart button
 
 let restartBtn = document.querySelector('.restart-btn');
+game.restartGame();
 
-restartBtn.addEventListener('click', () => {
-    disabledBtn.style.display = 'none';
-    startBtn.style.display = 'flex';
+// restartBtn.addEventListener('click', () => {
+//     // disabledBtn.style.display = 'none';
+//     // startBtn.style.display = 'flex';
 
-    player1Name.style.display = 'flex';
-    displayName1.style.display = 'none';
+//     // player1Name.style.display = 'flex';
+//     // displayName1.style.display = 'none';
     
-    player2Name.style.display = 'flex';
-    displayName2.style.display = 'none';
+//     // player2Name.style.display = 'flex';
+//     // displayName2.style.display = 'none';
 
-    gridCell.forEach(cell => {
-        cell.innerText = '';
-    })
-}) // change restart button - needs to clean the grid and reset the counter
-
-// use count = 0 and count++ instead of counter()
+//     gridCell.forEach(cell => {
+//         cell.innerText = '';
+//     })
+// })
+ // change restart button - it needs to clean the grid and reset the counter
