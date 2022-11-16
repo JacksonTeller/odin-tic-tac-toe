@@ -47,7 +47,6 @@ function startGame() {
     
         // playing turns
         // playGame();
-        console.log(game.count)
         game.playGame();
 }
 
@@ -136,8 +135,8 @@ const game = (() => {
         gridCell.forEach(cell => {
             cell.addEventListener('click', () => {
                 console.log(count)
-                console.log(count >= 9, disabledBtn.style.display === 'none', isNaN(count))
-                if (count >= 9 || disabledBtn.style.display === 'none') {
+                // console.log(count >= 9, disabledBtn.style.display === 'none', isNaN(count))
+                if (count >= 9 || disabledBtn.style.display === 'none' || cell.innerText !== '') {
                     cell.innerText = cell.innerText;
                     // count = NaN;                
                 } else if (count % 2) {
@@ -145,7 +144,7 @@ const game = (() => {
                     cell.innerText = 'O';
                     count++;
                     console.log(gameboardUpdate())
-                } else if (count === 0 || !(isNaN(count))) {
+                } else {
                     // player1Play();
                     cell.innerText = 'X';
                     count++;
@@ -162,7 +161,7 @@ const game = (() => {
             })
         })
     }
-    return {count, playGame, restartGame};
+    return {playGame, restartGame};
 })();
 
 // restart button
@@ -184,4 +183,4 @@ game.restartGame();
 //         cell.innerText = '';
 //     })
 // })
- // change restart button - it needs to clean the grid and reset the counter
+
