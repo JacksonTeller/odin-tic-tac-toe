@@ -157,8 +157,25 @@ const game = (() => {
                 }
                 if (cell.innerText !== '') {
                     let a = gameboardUpdate();
-                    if ([a[0], a[1], a[2]].toString() === xWin) {
-                        console.log('Winner!')
+                    if ([a[0], a[1], a[2]].toString() === xWin || 
+                        [a[3], a[4], a[5]].toString() === xWin ||
+                        [a[6], a[7], a[8]].toString() === xWin ||
+                        [a[0], a[3], a[6]].toString() === xWin ||
+                        [a[1], a[4], a[7]].toString() === xWin ||
+                        [a[2], a[5], a[8]].toString() === xWin ||
+                        [a[0], a[4], a[8]].toString() === xWin ||
+                        [a[2], a[4], a[6]].toString() === xWin) {
+                        console.log('Winner! X')
+                    } 
+                    if ([a[0], a[1], a[2]].toString() === xWin || 
+                    [a[3], a[4], a[5]].toString() === oWin ||
+                    [a[6], a[7], a[8]].toString() === oWin ||
+                    [a[0], a[3], a[6]].toString() === oWin ||
+                    [a[1], a[4], a[7]].toString() === oWin ||
+                    [a[2], a[5], a[8]].toString() === oWin ||
+                    [a[0], a[4], a[8]].toString() === oWin ||
+                    [a[2], a[4], a[6]].toString() === oWin) {
+                        console.log('Winner! O')
                     }
                     // console.log([a[0], a[1], a[2]].toString() === xWin)
                 }
