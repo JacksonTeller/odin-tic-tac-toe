@@ -131,6 +131,11 @@ function playGame() {
 
 const game = (() => {
     let count = 0;
+    const xWin = 'X,X,X';
+    const oWin = 'O,O,O';
+    const winPatterns = {
+        winnerX: 'o',
+    };
     const playGame = () => {
         gridCell.forEach(cell => {
             cell.addEventListener('click', () => {
@@ -149,6 +154,13 @@ const game = (() => {
                     cell.innerText = 'X';
                     count++;
                     console.log(gameboardUpdate())
+                }
+                if (cell.innerText !== '') {
+                    let a = gameboardUpdate();
+                    if ([a[0], a[1], a[2]].toString() === xWin) {
+                        console.log('Winner!')
+                    }
+                    // console.log([a[0], a[1], a[2]].toString() === xWin)
                 }
             });
         });
@@ -184,3 +196,4 @@ game.restartGame();
 //     })
 // })
 
+// announce a winner if a pattern works
