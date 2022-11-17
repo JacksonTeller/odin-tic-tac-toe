@@ -166,6 +166,9 @@ const game = (() => {
                         [a[0], a[4], a[8]].toString() === xWin ||
                         [a[2], a[4], a[6]].toString() === xWin) {
                         console.log('Winner! X')
+                        winnerPopup.style.display = 'flex';
+                        resultText.innerText = 'Winner X';
+
                     } 
                     if ([a[0], a[1], a[2]].toString() === xWin || 
                     [a[3], a[4], a[5]].toString() === oWin ||
@@ -176,6 +179,8 @@ const game = (() => {
                     [a[0], a[4], a[8]].toString() === oWin ||
                     [a[2], a[4], a[6]].toString() === oWin) {
                         console.log('Winner! O')
+                        winnerPopup.style.display = 'flex';
+                        resultText.innerText = 'Winner O';
                     }
                     // console.log([a[0], a[1], a[2]].toString() === xWin)
                 }
@@ -213,4 +218,14 @@ game.restartGame();
 //     })
 // })
 
-// announce a winner if a pattern works
+let winnerPopup = document.querySelector('.bg-modal');
+let resultText = document.querySelector('.result');
+let resultBtn = document.querySelector('.result-btn');
+
+// turn-off the winner pop-up
+
+resultBtn.addEventListener('click', () => {
+    winnerPopup.style.display = 'none';
+});
+
+// think through what should happen after result announce
