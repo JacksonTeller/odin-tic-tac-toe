@@ -195,7 +195,16 @@ const game = (() => {
             })
         })
     }
-    return {playGame, restartGame};
+    const playNewround = () => {
+        resultBtn.addEventListener('click', () => {
+            winnerPopup.style.display = 'none';
+            count = 0;        
+            gridCell.forEach(cell => {
+                cell.innerText = '';
+            })
+        });
+    }
+    return {playGame, restartGame, playNewround};
 })();
 
 // restart button
@@ -222,10 +231,12 @@ let winnerPopup = document.querySelector('.bg-modal');
 let resultText = document.querySelector('.result');
 let resultBtn = document.querySelector('.result-btn');
 
-// turn-off the winner pop-up
+// turn-off the winner pop-up and play a new round
 
 resultBtn.addEventListener('click', () => {
     winnerPopup.style.display = 'none';
 });
 
-// think through what should happen after result announce
+game.playNewround();
+
+// wrap the code into factory functions and modules
