@@ -2,21 +2,21 @@
 
 let gridCell = document.querySelectorAll('div[class^="grid"]');
 
-function showX() {
-    this.innerText = 'X';
-    console.log(gameboardUpdate());
-    changeTurnX();
-}
+// function showX() {
+//     this.innerText = 'X';
+//     console.log(gameboardUpdate());
+//     changeTurnX();
+// }
 
 // gridCell.forEach(cell => {
 //     cell.addEventListener('click', showX);
 // })
 
-function showO() {
-    this.innerText = 'O';
-    console.log(gameboardUpdate());
-    changeTurnO();
-}
+// function showO() {
+//     this.innerText = 'O';
+//     console.log(gameboardUpdate());
+//     changeTurnO();
+// }
 
 // insert players' names
 
@@ -52,18 +52,18 @@ function startGame() {
 
 // functions for players to insert an x or o
 
-function player1Play() {
-    gridCell.forEach(cell => {
-        cell.addEventListener('click', showX);
-    });
-    // counter();
-}
+// function player1Play() {
+//     gridCell.forEach(cell => {
+//         cell.addEventListener('click', showX);
+//     });
+//     // counter();
+// }
 
-function player2Play() {
-    gridCell.forEach(cell => {
-        cell.addEventListener('click', showO);
-    });
-}
+// function player2Play() {
+//     gridCell.forEach(cell => {
+//         cell.addEventListener('click', showO);
+//     });
+// }
 
 // update a gameboard
 
@@ -77,55 +77,55 @@ function gameboardUpdate() {
 }
 
 // remove click event and change the turn
-function changeTurnX() {
-    gridCell.forEach(cell => {
-        cell.removeEventListener('click', showX);
-    })
-}
+// function changeTurnX() {
+//     gridCell.forEach(cell => {
+//         cell.removeEventListener('click', showX);
+//     })
+// }
 
-function changeTurnO() {
-    gridCell.forEach(cell => {
-        cell.removeEventListener('click', showO);
-    })
-}
+// function changeTurnO() {
+//     gridCell.forEach(cell => {
+//         cell.removeEventListener('click', showO);
+//     })
+// }
 
 // counter
 
-const counterCreator = () => {
-    let count = 0;
-    return () => {
-      console.log(count);
-      return count++;
-    };
-  };
+// const counterCreator = () => {
+//     let count = 0;
+//     return () => {
+//       console.log(count);
+//       return count++;
+//     };
+//   };
   
-const counter = counterCreator();
+// const counter = counterCreator();
 
 // play on the grid
 
-function playGame() {
-    let count = 0;
-    gridCell.forEach(cell => {
-        cell.addEventListener('click', () => {
-            console.log(count)
-            // console.log(disabledBtn.style.display !== 'none' && isNaN(count))
-            if (count >= 9 || disabledBtn.style.display === 'none' || isNaN(count)) {
-                // cell.innerText = cell.innerText;
-                count = NaN;                
-            } else if (count % 2) {
-                // player2Play();
-                cell.innerText = 'O';
-                count++;
-                console.log(gameboardUpdate())
-            } else {
-                // player1Play();
-                cell.innerText = 'X';
-                count++;
-                console.log(gameboardUpdate())
-            }
-        });
-    });
-}
+// function playGame() {
+//     let count = 0;
+//     gridCell.forEach(cell => {
+//         cell.addEventListener('click', () => {
+//             console.log(count)
+//             // console.log(disabledBtn.style.display !== 'none' && isNaN(count))
+//             if (count >= 9 || disabledBtn.style.display === 'none' || isNaN(count)) {
+//                 // cell.innerText = cell.innerText;
+//                 count = NaN;                
+//             } else if (count % 2) {
+//                 // player2Play();
+//                 cell.innerText = 'O';
+//                 count++;
+//                 console.log(gameboardUpdate())
+//             } else {
+//                 // player1Play();
+//                 cell.innerText = 'X';
+//                 count++;
+//                 console.log(gameboardUpdate())
+//             }
+//         });
+//     });
+// }
 
 // playGame() as a module 
 
@@ -170,7 +170,7 @@ const game = (() => {
                         resultText.innerText = 'Winner X';
 
                     } 
-                    if ([a[0], a[1], a[2]].toString() === xWin || 
+                    if ([a[0], a[1], a[2]].toString() === oWin || 
                     [a[3], a[4], a[5]].toString() === oWin ||
                     [a[6], a[7], a[8]].toString() === oWin ||
                     [a[0], a[3], a[6]].toString() === oWin ||
@@ -233,9 +233,9 @@ let resultBtn = document.querySelector('.result-btn');
 
 // turn-off the winner pop-up and play a new round
 
-resultBtn.addEventListener('click', () => {
-    winnerPopup.style.display = 'none';
-});
+// resultBtn.addEventListener('click', () => {
+//     winnerPopup.style.display = 'none';
+// });
 
 game.playNewround();
 
