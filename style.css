@@ -23,6 +23,10 @@ body {
     /* padding: 0 5px; */
     /* align-content: space-around; */
 }
+.score {
+    display: none;
+    align-items: center;
+}
 
 input {
     width: 8rem;

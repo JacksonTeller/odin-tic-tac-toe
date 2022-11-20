@@ -138,6 +138,8 @@ const game = (() => {
     let player2Name = document.querySelector('#player2-name');
     let displayName2 = document.querySelector('.display-name2');
 
+    let score = document.querySelector('.score');
+
     let startBtn = document.querySelector('.start-btn');
     let disabledBtn = document.querySelector('.start-disabled-btn');
 
@@ -149,6 +151,8 @@ const game = (() => {
 
 
     let count = 0;
+    let pointsX = 0;
+    let pointsO = 0;
     const xWin = 'X,X,X';
     const oWin = 'O,O,O';
 
@@ -205,10 +209,14 @@ const game = (() => {
                         console.log('Winner! X')
                         winnerPopup.style.display = 'flex';
                         resultText.innerText = 'Winner X';
+                        pointsX++;
+                        score.innerText = pointsX + ':' + pointsO;
                     } else if (oCheck) {
                         console.log('Winner! O')
                         winnerPopup.style.display = 'flex';
                         resultText.innerText = 'Winner O';
+                        pointsO++;
+                        score.innerText = pointsX + ':' + pointsO;
                     } else if (count >= 9 && !(xCheck) && !(oCheck)) {
                         winnerPopup.style.display = 'flex';
                         resultText.innerText = 'Draw!';
@@ -269,6 +277,10 @@ const game = (() => {
     
         startBtn.style.display = 'none';
         disabledBtn.style.display = 'flex';
+
+        // score
+        score.style.display = 'flex';
+        score.innerText = pointsX + ':' + pointsO;
     
     
         // playing turns
@@ -314,4 +326,4 @@ const game = (() => {
 
 // game.playNewround();
 
-// announce a draw
+// count points
