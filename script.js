@@ -29,26 +29,26 @@ let displayName2 = document.querySelector('.display-name2');
 let startBtn = document.querySelector('.start-btn');
 let disabledBtn = document.querySelector('.start-disabled-btn');
 
-startBtn.addEventListener('click', startGame);
+// startBtn.addEventListener('click', startGame);
 
-function startGame() {
-        //insert players' names
-        player1Name.style.display = 'none';
-        displayName1.style.display = 'flex';
-        displayName1.innerText = player1Name.value;
+// function startGame() {
+//         //insert players' names
+//         player1Name.style.display = 'none';
+//         displayName1.style.display = 'flex';
+//         displayName1.innerText = player1Name.value;
     
-        player2Name.style.display = 'none';
-        displayName2.style.display = 'flex';
-        displayName2.innerText = player2Name.value;
+//         player2Name.style.display = 'none';
+//         displayName2.style.display = 'flex';
+//         displayName2.innerText = player2Name.value;
     
-        startBtn.style.display = 'none';
-        disabledBtn.style.display = 'flex';
+//         startBtn.style.display = 'none';
+//         disabledBtn.style.display = 'flex';
     
     
-        // playing turns
-        // playGame();
-        game.playGame();
-}
+//         // playing turns
+//         // playGame();
+//         game.playGame();
+// }
 
 // functions for players to insert an x or o
 
@@ -133,9 +133,7 @@ const game = (() => {
     let count = 0;
     const xWin = 'X,X,X';
     const oWin = 'O,O,O';
-    const winPatterns = {
-        winnerX: 'o',
-    };
+
     const playGame = () => {
         gridCell.forEach(cell => {
             cell.addEventListener('click', () => {
@@ -187,6 +185,7 @@ const game = (() => {
             });
         });
     }
+
     const restartGame = () => {
         restartBtn.addEventListener('click', () => {
             count = 0;        
@@ -195,6 +194,7 @@ const game = (() => {
             })
         })
     }
+
     const playNewround = () => {
         resultBtn.addEventListener('click', () => {
             winnerPopup.style.display = 'none';
@@ -204,7 +204,28 @@ const game = (() => {
             })
         });
     }
-    return {playGame, restartGame, playNewround};
+
+    function startGame() {
+        //insert players' names
+        player1Name.style.display = 'none';
+        displayName1.style.display = 'flex';
+        displayName1.innerText = player1Name.value;
+    
+        player2Name.style.display = 'none';
+        displayName2.style.display = 'flex';
+        displayName2.innerText = player2Name.value;
+    
+        startBtn.style.display = 'none';
+        disabledBtn.style.display = 'flex';
+    
+    
+        // playing turns
+        // playGame();
+        playGame();
+    }
+    startBtn.addEventListener('click', startGame);
+
+    return {playGame, restartGame, playNewround, startGame};
 })();
 
 // restart button
