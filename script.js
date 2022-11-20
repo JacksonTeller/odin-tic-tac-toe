@@ -1,6 +1,6 @@
 // show x or o on click
 
-let gridCell = document.querySelectorAll('div[class^="grid"]');
+// let gridCell = document.querySelectorAll('div[class^="grid"]');
 
 // function showX() {
 //     this.innerText = 'X';
@@ -20,14 +20,14 @@ let gridCell = document.querySelectorAll('div[class^="grid"]');
 
 // insert players' names
 
-let player1Name = document.querySelector('#player1-name');
-let displayName1 = document.querySelector('.display-name1');
+// let player1Name = document.querySelector('#player1-name');
+// let displayName1 = document.querySelector('.display-name1');
 
-let player2Name = document.querySelector('#player2-name');
-let displayName2 = document.querySelector('.display-name2');
+// let player2Name = document.querySelector('#player2-name');
+// let displayName2 = document.querySelector('.display-name2');
 
-let startBtn = document.querySelector('.start-btn');
-let disabledBtn = document.querySelector('.start-disabled-btn');
+// let startBtn = document.querySelector('.start-btn');
+// let disabledBtn = document.querySelector('.start-disabled-btn');
 
 // startBtn.addEventListener('click', startGame);
 
@@ -67,14 +67,14 @@ let disabledBtn = document.querySelector('.start-disabled-btn');
 
 // update a gameboard
 
-function gameboardUpdate() {
-    let gameBoard = [];
-    gridCell.forEach(cell => {
-        gameBoard.push(cell.innerText);
-    })
-    // console.log(gameBoard)
-    return gameBoard;
-}
+// function gameboardUpdate() {
+//     let gameBoard = [];
+//     gridCell.forEach(cell => {
+//         gameBoard.push(cell.innerText);
+//     })
+//     // console.log(gameBoard)
+//     return gameBoard;
+// }
 
 // remove click event and change the turn
 // function changeTurnX() {
@@ -130,9 +130,38 @@ function gameboardUpdate() {
 // playGame() as a module 
 
 const game = (() => {
+    let gridCell = document.querySelectorAll('div[class^="grid"]');
+
+    let player1Name = document.querySelector('#player1-name');
+    let displayName1 = document.querySelector('.display-name1');
+
+    let player2Name = document.querySelector('#player2-name');
+    let displayName2 = document.querySelector('.display-name2');
+
+    let startBtn = document.querySelector('.start-btn');
+    let disabledBtn = document.querySelector('.start-disabled-btn');
+
+    let restartBtn = document.querySelector('.restart-btn');
+
+    let winnerPopup = document.querySelector('.bg-modal');
+    let resultText = document.querySelector('.result');
+    let resultBtn = document.querySelector('.result-btn');
+
+
     let count = 0;
     const xWin = 'X,X,X';
     const oWin = 'O,O,O';
+
+    
+
+    function gameboardUpdate() {
+        let gameBoard = [];
+        gridCell.forEach(cell => {
+            gameBoard.push(cell.innerText);
+        })
+        // console.log(gameBoard)
+        return gameBoard;
+    }
 
     const playGame = () => {
         gridCell.forEach(cell => {
@@ -155,54 +184,77 @@ const game = (() => {
                 }
                 if (cell.innerText !== '') {
                     let a = gameboardUpdate();
-                    if ([a[0], a[1], a[2]].toString() === xWin || 
-                        [a[3], a[4], a[5]].toString() === xWin ||
-                        [a[6], a[7], a[8]].toString() === xWin ||
-                        [a[0], a[3], a[6]].toString() === xWin ||
-                        [a[1], a[4], a[7]].toString() === xWin ||
-                        [a[2], a[5], a[8]].toString() === xWin ||
-                        [a[0], a[4], a[8]].toString() === xWin ||
-                        [a[2], a[4], a[6]].toString() === xWin) {
+                    const xCheck = ([a[0], a[1], a[2]].toString() === xWin || 
+                                    [a[3], a[4], a[5]].toString() === xWin ||
+                                    [a[6], a[7], a[8]].toString() === xWin ||
+                                    [a[0], a[3], a[6]].toString() === xWin ||
+                                    [a[1], a[4], a[7]].toString() === xWin ||
+                                    [a[2], a[5], a[8]].toString() === xWin ||
+                                    [a[0], a[4], a[8]].toString() === xWin ||
+                                    [a[2], a[4], a[6]].toString() === xWin);
+
+                    const oCheck = ([a[0], a[1], a[2]].toString() === oWin || 
+                                    [a[3], a[4], a[5]].toString() === oWin ||
+                                    [a[6], a[7], a[8]].toString() === oWin ||
+                                    [a[0], a[3], a[6]].toString() === oWin ||
+                                    [a[1], a[4], a[7]].toString() === oWin ||
+                                    [a[2], a[5], a[8]].toString() === oWin ||
+                                    [a[0], a[4], a[8]].toString() === oWin ||
+                                    [a[2], a[4], a[6]].toString() === oWin);
+                    if (xCheck) {
                         console.log('Winner! X')
                         winnerPopup.style.display = 'flex';
                         resultText.innerText = 'Winner X';
-
-                    } 
-                    if ([a[0], a[1], a[2]].toString() === oWin || 
-                    [a[3], a[4], a[5]].toString() === oWin ||
-                    [a[6], a[7], a[8]].toString() === oWin ||
-                    [a[0], a[3], a[6]].toString() === oWin ||
-                    [a[1], a[4], a[7]].toString() === oWin ||
-                    [a[2], a[5], a[8]].toString() === oWin ||
-                    [a[0], a[4], a[8]].toString() === oWin ||
-                    [a[2], a[4], a[6]].toString() === oWin) {
+                    } else if (oCheck) {
                         console.log('Winner! O')
                         winnerPopup.style.display = 'flex';
                         resultText.innerText = 'Winner O';
+                    } else if (count >= 9 && !(xCheck) && !(oCheck)) {
+                        winnerPopup.style.display = 'flex';
+                        resultText.innerText = 'Draw!';
                     }
                     // console.log([a[0], a[1], a[2]].toString() === xWin)
                 }
+                // if (count >= 9 && resultText.innerText !== 'Winner O' || count >= 9 && resultText.innerText !== 'Winner X') {
+                //     winnerPopup.style.display = 'flex';
+                //     resultText.innerText = 'Draw!';
+                // }
             });
         });
     }
 
-    const restartGame = () => {
-        restartBtn.addEventListener('click', () => {
-            count = 0;        
+    // const restartGame = () => {
+    //     restartBtn.addEventListener('click', () => {
+    //         count = 0;        
+    //         gridCell.forEach(cell => {
+    //             cell.innerText = '';
+    //         })
+    //     })
+    // }
+
+    function restartGame() {
+        count = 0;        
             gridCell.forEach(cell => {
                 cell.innerText = '';
             })
-        })
     }
 
-    const playNewround = () => {
-        resultBtn.addEventListener('click', () => {
-            winnerPopup.style.display = 'none';
-            count = 0;        
-            gridCell.forEach(cell => {
-                cell.innerText = '';
-            })
-        });
+    // const playNewround = () => {
+    //     resultBtn.addEventListener('click', () => {
+    //         winnerPopup.style.display = 'none';
+    //         count = 0;        
+    //         gridCell.forEach(cell => {
+    //             cell.innerText = '';
+    //         })
+    //     });
+    // }
+
+    function playNewround() {
+        winnerPopup.style.display = 'none';
+        count = 0;        
+        gridCell.forEach(cell => {
+            cell.innerText = '';
+        })
     }
 
     function startGame() {
@@ -224,14 +276,16 @@ const game = (() => {
         playGame();
     }
     startBtn.addEventListener('click', startGame);
+    restartBtn.addEventListener('click', restartGame);
+    resultBtn.addEventListener('click', playNewround);
 
-    return {playGame, restartGame, playNewround, startGame};
+    return {playGame};
 })();
 
 // restart button
 
-let restartBtn = document.querySelector('.restart-btn');
-game.restartGame();
+// let restartBtn = document.querySelector('.restart-btn');
+// game.restartGame();
 
 // restartBtn.addEventListener('click', () => {
 //     // disabledBtn.style.display = 'none';
@@ -248,9 +302,9 @@ game.restartGame();
 //     })
 // })
 
-let winnerPopup = document.querySelector('.bg-modal');
-let resultText = document.querySelector('.result');
-let resultBtn = document.querySelector('.result-btn');
+// let winnerPopup = document.querySelector('.bg-modal');
+// let resultText = document.querySelector('.result');
+// let resultBtn = document.querySelector('.result-btn');
 
 // turn-off the winner pop-up and play a new round
 
@@ -258,6 +312,6 @@ let resultBtn = document.querySelector('.result-btn');
 //     winnerPopup.style.display = 'none';
 // });
 
-game.playNewround();
+// game.playNewround();
 
-// wrap the code into factory functions and modules
+// announce a draw
