@@ -156,6 +156,7 @@ const game = (() => {
     const xWin = 'X,X,X';
     const oWin = 'O,O,O';
 
+    let arr = [];
     
 
     function gameboardUpdate() {
@@ -167,25 +168,42 @@ const game = (() => {
         return gameBoard;
     }
 
+    function AIplay() {
+        
+        for(let i in arr) {
+            console.log(i)
+            if (gridCell[arr[i]].innerText === '') {
+                gridCell[arr[i]].innerText = 'O';
+                break;
+            }
+        }
+    }
+
     const playGame = () => {
         gridCell.forEach(cell => {
             cell.addEventListener('click', () => {
-                console.log(count)
-                // console.log(count >= 9, disabledBtn.style.display === 'none', isNaN(count))
+                console.log("count "+count)
+                
+                console.log(arr)
+
+                // play with another player
                 if (count >= 9 || disabledBtn.style.display === 'none' || cell.innerText !== '') {
                     cell.innerText = cell.innerText;
                     // count = NaN;                
-                } else if (count % 2) {
+                // } else if (count % 2) {
                     // player2Play();
-                    cell.innerText = 'O';
-                    count++;
-                    console.log(gameboardUpdate())
+                    // cell.innerText = 'O';
+                    // count++;
+                    // console.log(gameboardUpdate())
                 } else {
                     // player1Play();
                     cell.innerText = 'X';
                     count++;
+                    
+                    AIplay()
                     console.log(gameboardUpdate())
                 }
+                // check if there is a winner
                 if (cell.innerText !== '') {
                     let a = gameboardUpdate();
                     const xCheck = ([a[0], a[1], a[2]].toString() === xWin || 
@@ -241,6 +259,16 @@ const game = (() => {
     // }
 
     function restartGame() {
+        arr = [];
+        for (let i = 0; i < 9; i++) {
+            let position = Math.floor(Math.random() * 9);
+            if (arr.includes(position)) {
+                i--;
+            } else {
+                arr.push(position);
+            }
+        }
+
         count = 0;        
             gridCell.forEach(cell => {
                 cell.innerText = '';
@@ -258,6 +286,16 @@ const game = (() => {
     // }
 
     function playNewround() {
+        arr = [];
+        for (let i = 0; i < 9; i++) {
+            let position = Math.floor(Math.random() * 9);
+            if (arr.includes(position)) {
+                i--;
+            } else {
+                arr.push(position);
+            }
+        }
+
         winnerPopup.style.display = 'none';
         count = 0;        
         gridCell.forEach(cell => {
@@ -282,17 +320,30 @@ const game = (() => {
         score.style.display = 'flex';
         score.innerText = pointsX + ':' + pointsO;
     
-    
+        // for AI
+
+        for (let i = 0; i < 9; i++) {
+            let position = Math.floor(Math.random() * 9);
+            if (arr.includes(position)) {
+                i--;
+            } else {
+                arr.push(position);
+            }
+        }
         // playing turns
-        // playGame();
         playGame();
+
+        // console.log(gridCell[0].innerText)
+        // play with AI
     }
+
     startBtn.addEventListener('click', startGame);
     restartBtn.addEventListener('click', restartGame);
     resultBtn.addEventListener('click', playNewround);
 
     return {playGame};
 })();
+
 
 // restart button
 
@@ -326,4 +377,8 @@ const game = (() => {
 
 // game.playNewround();
 
-// count points
+// show in a "winner announce" popup a copy of a played game
+// play versus AI
+
+
+
