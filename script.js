@@ -149,6 +149,7 @@ const game = (() => {
     let resultText = document.querySelector('.result');
     let resultBtn = document.querySelector('.result-btn');
 
+    let smallBoard = document.querySelectorAll('div[class^="small-grid"]');
 
     let count = 0;
     let pointsX = 0;
@@ -168,16 +169,16 @@ const game = (() => {
         return gameBoard;
     }
 
-    function AIplay() {
+    // function AIplay() {
         
-        for(let i in arr) {
-            console.log(i)
-            if (gridCell[arr[i]].innerText === '') {
-                gridCell[arr[i]].innerText = 'O';
-                break;
-            }
-        }
-    }
+    //     for(let i in arr) {
+    //         console.log(i)
+    //         if (gridCell[arr[i]].innerText === '') {
+    //             gridCell[arr[i]].innerText = 'O';
+    //             break;
+    //         }
+    //     }
+    // }
 
     const playGame = () => {
         gridCell.forEach(cell => {
@@ -190,17 +191,17 @@ const game = (() => {
                 if (count >= 9 || disabledBtn.style.display === 'none' || cell.innerText !== '') {
                     cell.innerText = cell.innerText;
                     // count = NaN;                
-                // } else if (count % 2) {
+                } else if (count % 2) {
                     // player2Play();
-                    // cell.innerText = 'O';
-                    // count++;
-                    // console.log(gameboardUpdate())
+                    cell.innerText = 'O';
+                    count++;
+                    console.log(gameboardUpdate())
                 } else {
                     // player1Play();
                     cell.innerText = 'X';
                     count++;
                     
-                    AIplay()
+                    // AIplay()
                     console.log(gameboardUpdate())
                 }
                 // check if there is a winner
@@ -229,12 +230,21 @@ const game = (() => {
                         resultText.innerText = 'Winner X';
                         pointsX++;
                         score.innerText = pointsX + ':' + pointsO;
+
+                        for (let i = 0; i < a.length; i++) {
+                            smallBoard[i].innerText = a[i];
+                        }
+
                     } else if (oCheck) {
                         console.log('Winner! O')
                         winnerPopup.style.display = 'flex';
                         resultText.innerText = 'Winner O';
                         pointsO++;
                         score.innerText = pointsX + ':' + pointsO;
+
+                        for (let i = 0; i < a.length; i++) {
+                            smallBoard[i].innerText = a[i];
+                        }
                     } else if (count >= 9 && !(xCheck) && !(oCheck)) {
                         winnerPopup.style.display = 'flex';
                         resultText.innerText = 'Draw!';
@@ -377,8 +387,4 @@ const game = (() => {
 
 // game.playNewround();
 
-// show in a "winner announce" popup a copy of a played game
-// play versus AI
-
-
-
+// show in a "winner announce" popup a copy of a played game + hihglight the player whose turn is in the moment
