@@ -23,6 +23,7 @@ body {
     /* padding: 0 5px; */
     /* align-content: space-around; */
 }
+
 .score {
     display: none;
     align-items: center;
@@ -32,12 +33,17 @@ input {
     width: 8rem;
 }
 
-label[for = 'player1-name'], label[for = 'player2-name'] {
+label[for='player1-name'], label[for='player2-name'] {
     width: 70px;
     height: 70px;
     border-radius: 50%;
     background-color: aliceblue;
 }
+
+/* label[for='player1-name'] {
+    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px black;
+} */
 
 .display-name1, .display-name2 {
     display: none;

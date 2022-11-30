@@ -150,6 +150,9 @@ const game = (() => {
     let resultBtn = document.querySelector('.result-btn');
 
     let smallBoard = document.querySelectorAll('div[class^="small-grid"]');
+    
+    let playerName1 = document.querySelector("label[for='player1-name']");
+    let playerName2 = document.querySelector("label[for='player2-name']");
 
     let count = 0;
     let pointsX = 0;
@@ -192,11 +195,17 @@ const game = (() => {
                     cell.innerText = cell.innerText;
                     // count = NaN;                
                 } else if (count % 2) {
+                    playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+                    playerName2.style = "box-shadow: none; box-shadow: none;";
+
                     // player2Play();
+                    
                     cell.innerText = 'O';
                     count++;
                     console.log(gameboardUpdate())
                 } else {
+                    playerName2.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+                    playerName1.style = "box-shadow: none; box-shadow: none;";
                     // player1Play();
                     cell.innerText = 'X';
                     count++;
@@ -248,6 +257,10 @@ const game = (() => {
                     } else if (count >= 9 && !(xCheck) && !(oCheck)) {
                         winnerPopup.style.display = 'flex';
                         resultText.innerText = 'Draw!';
+
+                        for (let i = 0; i < a.length; i++) {
+                            smallBoard[i].innerText = a[i];
+                        }
                     }
                     // console.log([a[0], a[1], a[2]].toString() === xWin)
                 }
@@ -269,15 +282,18 @@ const game = (() => {
     // }
 
     function restartGame() {
-        arr = [];
-        for (let i = 0; i < 9; i++) {
-            let position = Math.floor(Math.random() * 9);
-            if (arr.includes(position)) {
-                i--;
-            } else {
-                arr.push(position);
-            }
-        }
+        // arr = [];
+        // for (let i = 0; i < 9; i++) {
+        //     let position = Math.floor(Math.random() * 9);
+        //     if (arr.includes(position)) {
+        //         i--;
+        //     } else {
+        //         arr.push(position);
+        //     }
+        // }
+        // show whose turn
+        playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+        playerName2.style = "box-shadow: none; box-shadow: none;";
 
         count = 0;        
             gridCell.forEach(cell => {
@@ -296,15 +312,18 @@ const game = (() => {
     // }
 
     function playNewround() {
-        arr = [];
-        for (let i = 0; i < 9; i++) {
-            let position = Math.floor(Math.random() * 9);
-            if (arr.includes(position)) {
-                i--;
-            } else {
-                arr.push(position);
-            }
-        }
+        // arr = [];
+        // for (let i = 0; i < 9; i++) {
+        //     let position = Math.floor(Math.random() * 9);
+        //     if (arr.includes(position)) {
+        //         i--;
+        //     } else {
+        //         arr.push(position);
+        //     }
+        // }
+        // show whose turn
+        playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+        playerName2.style = "box-shadow: none; box-shadow: none;";
 
         winnerPopup.style.display = 'none';
         count = 0;        
@@ -329,17 +348,21 @@ const game = (() => {
         // score
         score.style.display = 'flex';
         score.innerText = pointsX + ':' + pointsO;
+
+
+        // show whose turn
+        playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
     
         // for AI
 
-        for (let i = 0; i < 9; i++) {
-            let position = Math.floor(Math.random() * 9);
-            if (arr.includes(position)) {
-                i--;
-            } else {
-                arr.push(position);
-            }
-        }
+        // for (let i = 0; i < 9; i++) {
+        //     let position = Math.floor(Math.random() * 9);
+        //     if (arr.includes(position)) {
+        //         i--;
+        //     } else {
+        //         arr.push(position);
+        //     }
+        // }
         // playing turns
         playGame();
 
@@ -387,4 +410,4 @@ const game = (() => {
 
 // game.playNewround();
 
-// show in a "winner announce" popup a copy of a played game + hihglight the player whose turn is in the moment
+// hihglight the player whose turn is in the moment
