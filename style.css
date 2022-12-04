@@ -38,6 +38,12 @@ label[for='player1-name'], label[for='player2-name'] {
     height: 70px;
     border-radius: 50%;
     background-color: aliceblue;
+
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    font-family: 'Fuzzy Bubbles', cursive, Geneva, Verdana, sans-serif;
+    font-size: 66px;
 }
 
 /* label[for='player1-name'] {
