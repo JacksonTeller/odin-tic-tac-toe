@@ -160,7 +160,7 @@ const game = (() => {
     const xWin = 'X,X,X';
     const oWin = 'O,O,O';
 
-    let arr = [];
+    // let arr = [];
     
 
     function gameboardUpdate() {
@@ -170,6 +170,82 @@ const game = (() => {
         })
         // console.log(gameBoard)
         return gameBoard;
+    }
+
+    function playTurns(cell) {
+        // console.log(this)
+        if (count >= 9 || disabledBtn.style.display === 'none' || cell.innerText !== '') {
+            cell.innerText = cell.innerText;
+            // count = NaN;                
+        } else if (count % 2) {
+            playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+            playerName2.style = "box-shadow: none; box-shadow: none;";
+
+            // player2Play();
+            
+            cell.innerText = 'O';
+            count++;
+            console.log(gameboardUpdate())
+        } else {
+            playerName2.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+            playerName1.style = "box-shadow: none; box-shadow: none;";
+            // player1Play();
+            cell.innerText = 'X';
+            count++;
+            
+            // AIplay()
+            console.log(gameboardUpdate())
+        }
+    }
+
+    function checkWinner() {
+        let currGameBrd = gameboardUpdate();
+        const xCheck = ([currGameBrd[0], currGameBrd[1], currGameBrd[2]].toString() === xWin || 
+                        [currGameBrd[3], currGameBrd[4], currGameBrd[5]].toString() === xWin ||
+                        [currGameBrd[6], currGameBrd[7], currGameBrd[8]].toString() === xWin ||
+                        [currGameBrd[0], currGameBrd[3], currGameBrd[6]].toString() === xWin ||
+                        [currGameBrd[1], currGameBrd[4], currGameBrd[7]].toString() === xWin ||
+                        [currGameBrd[2], currGameBrd[5], currGameBrd[8]].toString() === xWin ||
+                        [currGameBrd[0], currGameBrd[4], currGameBrd[8]].toString() === xWin ||
+                        [currGameBrd[2], currGameBrd[4], currGameBrd[6]].toString() === xWin);
+
+        const oCheck = ([currGameBrd[0], currGameBrd[1], currGameBrd[2]].toString() === oWin || 
+                        [currGameBrd[3], currGameBrd[4], currGameBrd[5]].toString() === oWin ||
+                        [currGameBrd[6], currGameBrd[7], currGameBrd[8]].toString() === oWin ||
+                        [currGameBrd[0], currGameBrd[3], currGameBrd[6]].toString() === oWin ||
+                        [currGameBrd[1], currGameBrd[4], currGameBrd[7]].toString() === oWin ||
+                        [currGameBrd[2], currGameBrd[5], currGameBrd[8]].toString() === oWin ||
+                        [currGameBrd[0], currGameBrd[4], currGameBrd[8]].toString() === oWin ||
+                        [currGameBrd[2], currGameBrd[4], currGameBrd[6]].toString() === oWin);
+        if (xCheck) {
+            console.log('Winner! X')
+            winnerPopup.style.display = 'flex';
+            resultText.innerText = 'Winner X';
+            pointsX++;
+            score.innerText = pointsX + ':' + pointsO;
+
+            for (let i = 0; i < currGameBrd.length; i++) {
+                smallBoard[i].innerText = currGameBrd[i];
+            }
+
+        } else if (oCheck) {
+            console.log('Winner! O')
+            winnerPopup.style.display = 'flex';
+            resultText.innerText = 'Winner O';
+            pointsO++;
+            score.innerText = pointsX + ':' + pointsO;
+
+            for (let i = 0; i < currGameBrd.length; i++) {
+                smallBoard[i].innerText = currGameBrd[i];
+            }
+        } else if (count >= 9 && !(xCheck) && !(oCheck)) {
+            winnerPopup.style.display = 'flex';
+            resultText.innerText = 'Draw!';
+
+            for (let i = 0; i < currGameBrd.length; i++) {
+                smallBoard[i].innerText = currGameBrd[i];
+            }
+        }
     }
 
     // function AIplay() {
@@ -183,86 +259,90 @@ const game = (() => {
     //     }
     // }
 
+
+
     const playGame = () => {
         gridCell.forEach(cell => {
             cell.addEventListener('click', () => {
                 console.log("count "+count)
-                
-                console.log(arr)
+                cell = cell;
+                playTurns(cell);
+                // console.log(arr)
 
                 // play with another player
-                if (count >= 9 || disabledBtn.style.display === 'none' || cell.innerText !== '') {
-                    cell.innerText = cell.innerText;
-                    // count = NaN;                
-                } else if (count % 2) {
-                    playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
-                    playerName2.style = "box-shadow: none; box-shadow: none;";
+                // if (count >= 9 || disabledBtn.style.display === 'none' || cell.innerText !== '') {
+                //     cell.innerText = cell.innerText;
+                //     // count = NaN;                
+                // } else if (count % 2) {
+                //     playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+                //     playerName2.style = "box-shadow: none; box-shadow: none;";
 
-                    // player2Play();
+                //     // player2Play();
                     
-                    cell.innerText = 'O';
-                    count++;
-                    console.log(gameboardUpdate())
-                } else {
-                    playerName2.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
-                    playerName1.style = "box-shadow: none; box-shadow: none;";
-                    // player1Play();
-                    cell.innerText = 'X';
-                    count++;
+                //     cell.innerText = 'O';
+                //     count++;
+                //     console.log(gameboardUpdate())
+                // } else {
+                //     playerName2.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+                //     playerName1.style = "box-shadow: none; box-shadow: none;";
+                //     // player1Play();
+                //     cell.innerText = 'X';
+                //     count++;
                     
-                    // AIplay()
-                    console.log(gameboardUpdate())
-                }
+                //     // AIplay()
+                //     console.log(gameboardUpdate())
+                // }
                 // check if there is a winner
                 if (cell.innerText !== '') {
-                    let a = gameboardUpdate();
-                    const xCheck = ([a[0], a[1], a[2]].toString() === xWin || 
-                                    [a[3], a[4], a[5]].toString() === xWin ||
-                                    [a[6], a[7], a[8]].toString() === xWin ||
-                                    [a[0], a[3], a[6]].toString() === xWin ||
-                                    [a[1], a[4], a[7]].toString() === xWin ||
-                                    [a[2], a[5], a[8]].toString() === xWin ||
-                                    [a[0], a[4], a[8]].toString() === xWin ||
-                                    [a[2], a[4], a[6]].toString() === xWin);
+                    checkWinner();
+                    // let currGameBrd = gameboardUpdate();
+                    // const xCheck = ([currGameBrd[0], currGameBrd[1], currGameBrd[2]].toString() === xWin || 
+                    //                 [currGameBrd[3], currGameBrd[4], currGameBrd[5]].toString() === xWin ||
+                    //                 [currGameBrd[6], currGameBrd[7], currGameBrd[8]].toString() === xWin ||
+                    //                 [currGameBrd[0], currGameBrd[3], currGameBrd[6]].toString() === xWin ||
+                    //                 [currGameBrd[1], currGameBrd[4], currGameBrd[7]].toString() === xWin ||
+                    //                 [currGameBrd[2], currGameBrd[5], currGameBrd[8]].toString() === xWin ||
+                    //                 [currGameBrd[0], currGameBrd[4], currGameBrd[8]].toString() === xWin ||
+                    //                 [currGameBrd[2], currGameBrd[4], currGameBrd[6]].toString() === xWin);
 
-                    const oCheck = ([a[0], a[1], a[2]].toString() === oWin || 
-                                    [a[3], a[4], a[5]].toString() === oWin ||
-                                    [a[6], a[7], a[8]].toString() === oWin ||
-                                    [a[0], a[3], a[6]].toString() === oWin ||
-                                    [a[1], a[4], a[7]].toString() === oWin ||
-                                    [a[2], a[5], a[8]].toString() === oWin ||
-                                    [a[0], a[4], a[8]].toString() === oWin ||
-                                    [a[2], a[4], a[6]].toString() === oWin);
-                    if (xCheck) {
-                        console.log('Winner! X')
-                        winnerPopup.style.display = 'flex';
-                        resultText.innerText = 'Winner X';
-                        pointsX++;
-                        score.innerText = pointsX + ':' + pointsO;
+                    // const oCheck = ([currGameBrd[0], currGameBrd[1], currGameBrd[2]].toString() === oWin || 
+                    //                 [currGameBrd[3], currGameBrd[4], currGameBrd[5]].toString() === oWin ||
+                    //                 [currGameBrd[6], currGameBrd[7], currGameBrd[8]].toString() === oWin ||
+                    //                 [currGameBrd[0], currGameBrd[3], currGameBrd[6]].toString() === oWin ||
+                    //                 [currGameBrd[1], currGameBrd[4], currGameBrd[7]].toString() === oWin ||
+                    //                 [currGameBrd[2], currGameBrd[5], currGameBrd[8]].toString() === oWin ||
+                    //                 [currGameBrd[0], currGameBrd[4], currGameBrd[8]].toString() === oWin ||
+                    //                 [currGameBrd[2], currGameBrd[4], currGameBrd[6]].toString() === oWin);
+                    // if (xCheck) {
+                    //     console.log('Winner! X')
+                    //     winnerPopup.style.display = 'flex';
+                    //     resultText.innerText = 'Winner X';
+                    //     pointsX++;
+                    //     score.innerText = pointsX + ':' + pointsO;
 
-                        for (let i = 0; i < a.length; i++) {
-                            smallBoard[i].innerText = a[i];
-                        }
+                    //     for (let i = 0; i < currGameBrd.length; i++) {
+                    //         smallBoard[i].innerText = currGameBrd[i];
+                    //     }
 
-                    } else if (oCheck) {
-                        console.log('Winner! O')
-                        winnerPopup.style.display = 'flex';
-                        resultText.innerText = 'Winner O';
-                        pointsO++;
-                        score.innerText = pointsX + ':' + pointsO;
+                    // } else if (oCheck) {
+                    //     console.log('Winner! O')
+                    //     winnerPopup.style.display = 'flex';
+                    //     resultText.innerText = 'Winner O';
+                    //     pointsO++;
+                    //     score.innerText = pointsX + ':' + pointsO;
 
-                        for (let i = 0; i < a.length; i++) {
-                            smallBoard[i].innerText = a[i];
-                        }
-                    } else if (count >= 9 && !(xCheck) && !(oCheck)) {
-                        winnerPopup.style.display = 'flex';
-                        resultText.innerText = 'Draw!';
+                    //     for (let i = 0; i < currGameBrd.length; i++) {
+                    //         smallBoard[i].innerText = currGameBrd[i];
+                    //     }
+                    // } else if (count >= 9 && !(xCheck) && !(oCheck)) {
+                    //     winnerPopup.style.display = 'flex';
+                    //     resultText.innerText = 'Draw!';
 
-                        for (let i = 0; i < a.length; i++) {
-                            smallBoard[i].innerText = a[i];
-                        }
-                    }
-                    // console.log([a[0], a[1], a[2]].toString() === xWin)
+                    //     for (let i = 0; i < currGameBrd.length; i++) {
+                    //         smallBoard[i].innerText = currGameBrd[i];
+                    //     }
+                    // }
+                    // console.log([currGameBrd[0], a[1], a[2]].toString() === xWin)
                 }
                 // if (count >= 9 && resultText.innerText !== 'Winner O' || count >= 9 && resultText.innerText !== 'Winner X') {
                 //     winnerPopup.style.display = 'flex';
@@ -364,6 +444,10 @@ const game = (() => {
         //     }
         // }
         // playing turns
+        console.log(player1Name.value)
+        // if (player1Name.value === '' || player2Name.value === '') {
+            
+        // }
         playGame();
 
         // console.log(gridCell[0].innerText)
@@ -410,4 +494,4 @@ const game = (() => {
 
 // game.playNewround();
 
-// hihglight the player whose turn is in the moment
+// create factory functions and modules
