@@ -6,6 +6,9 @@ body {
 
     display: flex;
     justify-content: center;
+
+    background-color: #45B0D9;
+    color: #200540;
 }
 
 .players {
@@ -72,7 +75,9 @@ label[for='player1-name'], label[for='player2-name'] {
 
 .main-container {
     width: 65%;
-    background-color: beige;
+
+    background-color: #59EDF0;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,7 +97,9 @@ label[for='player1-name'], label[for='player2-name'] {
 }
 
 div[class^="grid"] {
-    background-color: antiquewhite;
+
+    background-color: #F09259;
+
     border: 1px solid black;
     font-size: calc(450px /  3 - 20px);
 

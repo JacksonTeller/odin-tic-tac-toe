@@ -151,8 +151,8 @@ const game = (() => {
 
     let smallBoard = document.querySelectorAll('div[class^="small-grid"]');
     
-    let playerName1 = document.querySelector("label[for='player1-name']");
-    let playerName2 = document.querySelector("label[for='player2-name']");
+    let player1ava = document.querySelector("label[for='player1-name']");
+    let player2ava = document.querySelector("label[for='player2-name']");
 
     let count = 0;
     let pointsX = 0;
@@ -178,8 +178,8 @@ const game = (() => {
             cell.innerText = cell.innerText;
             // count = NaN;                
         } else if (count % 2) {
-            playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
-            playerName2.style = "box-shadow: none; box-shadow: none;";
+            player1ava.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+            player2ava.style = "box-shadow: none; box-shadow: none;";
 
             // player2Play();
             
@@ -187,8 +187,8 @@ const game = (() => {
             count++;
             console.log(gameboardUpdate())
         } else {
-            playerName2.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
-            playerName1.style = "box-shadow: none; box-shadow: none;";
+            player2ava.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+            player1ava.style = "box-shadow: none; box-shadow: none;";
             // player1Play();
             cell.innerText = 'X';
             count++;
@@ -274,8 +274,8 @@ const game = (() => {
                 //     cell.innerText = cell.innerText;
                 //     // count = NaN;                
                 // } else if (count % 2) {
-                //     playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
-                //     playerName2.style = "box-shadow: none; box-shadow: none;";
+                //     player1ava.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+                //     player2ava.style = "box-shadow: none; box-shadow: none;";
 
                 //     // player2Play();
                     
@@ -283,8 +283,8 @@ const game = (() => {
                 //     count++;
                 //     console.log(gameboardUpdate())
                 // } else {
-                //     playerName2.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
-                //     playerName1.style = "box-shadow: none; box-shadow: none;";
+                //     player2ava.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+                //     player1ava.style = "box-shadow: none; box-shadow: none;";
                 //     // player1Play();
                 //     cell.innerText = 'X';
                 //     count++;
@@ -372,8 +372,8 @@ const game = (() => {
         //     }
         // }
         // show whose turn
-        playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
-        playerName2.style = "box-shadow: none; box-shadow: none;";
+        player1ava.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+        player2ava.style = "box-shadow: none; box-shadow: none;";
 
         count = 0;        
             gridCell.forEach(cell => {
@@ -402,8 +402,8 @@ const game = (() => {
         //     }
         // }
         // show whose turn
-        playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
-        playerName2.style = "box-shadow: none; box-shadow: none;";
+        player1ava.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+        player2ava.style = "box-shadow: none; box-shadow: none;";
 
         winnerPopup.style.display = 'none';
         count = 0;        
@@ -431,7 +431,7 @@ const game = (() => {
 
 
         // show whose turn
-        playerName1.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+        player1ava.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
     
         // for AI
 
