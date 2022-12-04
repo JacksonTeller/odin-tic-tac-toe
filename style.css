@@ -31,6 +31,9 @@ body {
 .score {
     display: none;
     align-items: center;
+
+    font-size: 2rem;
+    font-family: 'Fuzzy Bubbles', cursive, Geneva, Verdana, sans-serif;;
 }
 
 input {
@@ -107,6 +110,7 @@ label[for='player1-name'], label[for='player2-name'] {
     align-items: center;
     gap: 1rem;
     overflow: auto;
+    box-shadow: 0px 0px 17px black;
 }
 
 .gameboard {
@@ -117,6 +121,7 @@ label[for='player1-name'], label[for='player2-name'] {
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
     font-family: 'Fuzzy Bubbles', cursive, Geneva, Verdana, sans-serif;
+    cursor: pointer;
 }
 
 div[class^="grid"] {
@@ -191,6 +196,7 @@ div[class^="grid"] {
     grid-template-rows: repeat(3, 60px);
     justify-content: center;
     font-family: 'Fuzzy Bubbles', cursive, Geneva, Verdana, sans-serif;
+    cursor: pointer;
 }
 
 div[class^="small-grid"] {
