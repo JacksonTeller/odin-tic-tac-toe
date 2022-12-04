@@ -372,8 +372,16 @@ const game = (() => {
         //     }
         // }
         // show whose turn
-        player1ava.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
-        player2ava.style = "box-shadow: none; box-shadow: none;";
+        // if (!(player1ava.style === "box-shadow: none; box-shadow: none;" && 
+        // player2ava.style === "box-shadow: none; box-shadow: none;")) {
+        //     return 1;
+        // } else {
+            
+        // }
+        if (disabledBtn.style.display === 'flex') {
+            player1ava.style = "box-shadow: 0 0 10px black; box-shadow: 0 0 10px black;";
+            player2ava.style = "box-shadow: none; box-shadow: none;";
+        }
 
         count = 0;        
             gridCell.forEach(cell => {

@@ -9,6 +9,7 @@ body {
 
     background-color: #45B0D9;
     color: #200540;
+    font-family: Verdana, Geneva, Tahoma, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .players {
@@ -62,14 +63,36 @@ label[for='player1-name'], label[for='player2-name'] {
 }
 
 .start-btn {
-    margin-top: -25px;
+    margin-top: -30px;
+
+    padding: 8px 28px;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: none;
+    background-color: #2CA1A3;
+    color: white;
+    transition-duration: 0.2s;
+
+}
+
+.start-btn:hover {
+    background-color: white;
+    color: #200540;
+    /* transition-duration: 0.4s; */
+    /* border: 1px solid #2CA1A3; */
 }
 
 .start-disabled-btn {
-    margin-top: -25px;
+    margin-top: -30px;
     opacity: 0.6;
     cursor: not-allowed;
-
+    
+    padding: 8px 28px;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: none;
+    background-color: #2CA1A3;
+    color: white;
     display: none;
 }
 
@@ -109,6 +132,21 @@ div[class^="grid"] {
     text-align: center;
 }
 
+.restart-btn {
+    padding: 8px 28px;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: none;
+    background-color: #2CA1A3;
+    color: white;
+    transition-duration: 0.2s;
+}
+
+.restart-btn:hover {
+    background-color: white;
+    color: #200540;
+}
+
 /* pop-up */
 
 .bg-modal {
@@ -126,11 +164,13 @@ div[class^="grid"] {
 .modal-content {
     width: 350px;
     height: 300px;
-    background-color: white;
+    /* background-color: white; */
     border-radius: 4px;
     text-align: center;
     padding: 20px;
     /* position: relative; */
+    background-color: #59EDF0;
+    color: #200540;
 
     display: flex;
     flex-direction: column;
@@ -143,6 +183,8 @@ div[class^="grid"] {
 .small-gameboard {
     width: 200px;
     height: 200px;
+    /* background-color: #F09259; */
+
 
     display: grid;
     grid-template-columns: repeat(3, 60px);
@@ -152,7 +194,7 @@ div[class^="grid"] {
 }
 
 div[class^="small-grid"] {
-    background-color: antiquewhite;
+    background-color: #F09259;
     border: 1px solid black;
     font-size: calc(200px /  3 - 20px);
 
@@ -174,4 +216,21 @@ div[class^="small-grid"] {
 .result-btn {
     width: 8rem;
     height: 2rem;
+
+    padding: 8px 28px;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: none;
+    background-color: #2CA1A3;
+    color: white;
+    transition-duration: 0.2s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-btn:hover {
+    background-color: white;
+    color: #200540;
 }
