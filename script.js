@@ -416,11 +416,11 @@ const game = (() => {
         //insert players' names
         player1Name.style.display = 'none';
         displayName1.style.display = 'flex';
-        displayName1.innerText = player1Name.value;
+        
     
         player2Name.style.display = 'none';
         displayName2.style.display = 'flex';
-        displayName2.innerText = player2Name.value;
+        
     
         startBtn.style.display = 'none';
         disabledBtn.style.display = 'flex';
@@ -444,10 +444,14 @@ const game = (() => {
         //     }
         // }
         // playing turns
-        console.log(player1Name.value)
-        // if (player1Name.value === '' || player2Name.value === '') {
-            
-        // }
+        console.log(player1Name.value === '')
+        if (player1Name.value === '' || player2Name.value === '') {
+            displayName1.innerText = 'Secret agent X';
+            displayName2.innerText = 'Secret agent O';
+        } else {
+            displayName1.innerText = player1Name.value;
+            displayName2.innerText = player2Name.value;
+        }
         playGame();
 
         // console.log(gridCell[0].innerText)
